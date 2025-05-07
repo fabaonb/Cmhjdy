@@ -1,39 +1,27 @@
-name: 自动更新
-
+name: 自动
 on:
- workflow_dispatch: null
- 
  schedule:
   - cron: 0 16 * * *
-
+ workflow_dispatch: null
 jobs:
  sync:
   runs-on: ubuntu-latest
-  
   permissions:
    contents: write
-  
   steps:
-   
-   - name: 删除 _worker.js
-     run: |
-      rm -f _worker.js
-   
+   - name: 删除 _worker.js 文件
+     run: rm -f cmhjdy/_worker.js
    - name: 检出仓库代码
      uses: actions/checkout@v4
-   
    - name: 设置 Node.js 环境
      uses: actions/setup-node@v3
      with:
       node-version: "18"
-   
    - name: 安装 Node.js 和依赖
      run: npm install -g javascript-obfuscator
-   
    - name: 下载原文件
      run: curl -sSL -o sourcefile.js
-      https://raw.githubusercontent.com/cmliu/CF-Workers-SUB/refs/heads/main/_worker.js
-   
+      https://raw.githubusercontent.com/yonggekkk/Cloudflare_vless_trojan/refs/heads/main/Vless_workers_pages/vless%E6%BA%90%E7%A0%81.js
    - name: 使用 Node.js 脚本混淆文件
      run: |
       javascript-obfuscator sourcefile.js --output _worker.js \
@@ -49,12 +37,11 @@ jobs:
       --string-array-threshold 1 \
       --transform-object-keys true \
       --unicode-escape-sequence true
-   
    - name: 检查文件变化并提交
      run: |
       git config --global user.name "github-actions[bot]"
-      git config --global user.email
-      "github-actions[bot]@users.noreply.github.com"
+      git config --global user.email "github-actions[bot]@users.noreply.github.com"
       git add _worker.js
       git diff --cached --quiet || git commit --allow-empty-message -m ""
       git push
+      
