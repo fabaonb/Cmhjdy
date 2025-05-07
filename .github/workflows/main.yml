@@ -35,7 +35,8 @@ jobs:
         run: |
           sed -i 's/let mytoken = 'auto';/let mytoken = 'cmhjdy';/g' sourcefile.js
           sed -i 's/let SUBUpdateTime = 6;;/let SUBUpdateTime = 1;/g' sourcefile.js
-    
+          sed -i 's/let guestToken = '';/let guestToken = 'cmhjdy';/g' sourcefile.js
+          
       - name: 使用 Node.js 脚本混淆文件
         run: |
           javascript-obfuscator sourcefile.js --output _worker.js \
