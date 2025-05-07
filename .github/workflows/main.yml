@@ -1,5 +1,6 @@
 name: 自动
 
+
 on:
   schedule:
     - cron: '0 16 * * *' 
@@ -12,6 +13,10 @@ jobs:
       contents: write
 
     steps:
+      - name: 删除 _worker.js
+        run: |
+          rm -f _worker.js
+      
       - name: 检出仓库代码
         uses: actions/checkout@v4
 
@@ -28,7 +33,7 @@ jobs:
       
       - name: 修改原文件
         run: |
-          sed -i 's/let mytoken = 'auto';/let mytoken = 'hjdy';/g' sourcefile.js
+          sed -i 's/let mytoken = 'auto';/let mytoken = 'cmhjdy';/g' sourcefile.js
           sed -i 's/let SUBUpdateTime = 6;;/let SUBUpdateTime = 1;/g' sourcefile.js
     
       - name: 使用 Node.js 脚本混淆文件
