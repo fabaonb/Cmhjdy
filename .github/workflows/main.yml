@@ -21,7 +21,7 @@ jobs:
      run: npm install -g javascript-obfuscator
    - name: 下载原文件
      run: curl -sSL -o sourcefile.js
-      https://raw.githubusercontent.com/yonggekkk/Cloudflare_vless_trojan/refs/heads/main/Vless_workers_pages/vless%E6%BA%90%E7%A0%81.js
+      https://raw.githubusercontent.com/cmliu/CF-Workers-SUB/refs/heads/main/_worker.js
    - name: 使用 Node.js 脚本混淆文件
      run: |
       javascript-obfuscator sourcefile.js --output _worker.js \
