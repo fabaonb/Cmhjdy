@@ -10,7 +10,7 @@ jobs:
    contents: write
   steps:
    - name: 删除 _worker.js 文件
-     run: rm -f cmhjdy/_worker.js
+     run: rm _worker.js
    - name: 检出仓库代码
      uses: actions/checkout@v4
    - name: 设置 Node.js 环境
