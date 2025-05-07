@@ -1,8 +1,8 @@
 name: 自动
 on:
+ workflow_dispatch: null
  schedule:
   - cron: 0 16 * * *
- workflow_dispatch: null
 jobs:
  sync:
   runs-on: ubuntu-latest
